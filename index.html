@@ -1,103 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Consulting & Management Services</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team PRG | Strategic Consulting & Real Estate Management</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1a1a1a; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2.5rem; border-bottom: 1px solid #e5e5e5; background: #fff; position: sticky; top: 0; z-index: 10; }
+    nav .logo { font-size: 20px; font-weight: 600; letter-spacing: -0.3px; }
+    nav .logo span { color: #185FA5; }
+    nav .links { display: flex; gap: 24px; }
+    nav .links a { font-size: 13px; color: #666; text-decoration: none; }
+    nav .links a:hover { color: #1a1a1a; }
+    nav .cta-btn { background: #185FA5; color: #fff; border: none; padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; }
+
+    .hero { padding: 5rem 2.5rem 4.5rem; background: linear-gradient(135deg, #042C53 0%, #185FA5 60%, #378ADD 100%); position: relative; overflow: hidden; }
+    .hero .badge { font-size: 12px; font-weight: 500; color: #B5D4F4; background: rgba(255,255,255,0.12); padding: 5px 14px; border-radius: 999px; display: inline-block; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.2); }
+    .hero h1 { font-size: 52px; font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 1.5rem; color: #fff; max-width: 680px; }
+    .hero h1 span { color: #85B7EB; }
+    .hero p { font-size: 16px; color: #B5D4F4; line-height: 1.7; margin-bottom: 2.5rem; max-width: 520px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-btns .btn-primary { background: #fff; color: #185FA5; border: none; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
+    .hero-btns .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); padding: 11px 24px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+
+    .divider { height: 1px; background: #e5e5e5; margin: 0 2.5rem; }
+    section { padding: 4rem 2.5rem; }
+    section h2 { font-size: 30px; font-weight: 700; margin-bottom: 0.5rem; }
+    section .sub { font-size: 15px; color: #666; margin-bottom: 2.5rem; }
+
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .pillar-card { border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; }
+    .pillar-card:nth-child(1) { background: #E6F1FB; border: 1px solid #B5D4F4; }
+    .pillar-card:nth-child(2) { background: #042C53; border: 1px solid #0C447C; }
+    .pillar-card:nth-child(3) { background: #185FA5; border: 1px solid #0C447C; }
+    .pillar-card:nth-child(4) { background: #EAF3DE; border: 1px solid #C0DD97; }
+    .pillar-card .p-num { font-size: 36px; font-weight: 700; opacity: 0.15; position: absolute; top: 12px; right: 16px; line-height: 1; }
+    .pillar-card:nth-child(1) .p-num { color: #185FA5; }
+    .pillar-card:nth-child(2) .p-num, .pillar-card:nth-child(3) .p-num { color: #fff; }
+    .pillar-card:nth-child(4) .p-num { color: #3B6D11; }
+    .pillar-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+    .pillar-card:nth-child(1) h3 { color: #0C447C; }
+    .pillar-card:nth-child(2) h3 { color: #B5D4F4; }
+    .pillar-card:nth-child(3) h3 { color: #E6F1FB; }
+    .pillar-card:nth-child(4) h3 { color: #27500A; }
+    .pillar-card p { font-size: 13px; line-height: 1.65; }
+    .pillar-card:nth-child(1) p { color: #185FA5; }
+    .pillar-card:nth-child(2) p { color: #85B7EB; }
+    .pillar-card:nth-child(3) p { color: #B5D4F4; }
+    .pillar-card:nth-child(4) p { color: #3B6D11; }
+
+    .services-section { background: #f7f7f5; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .service-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 1.25rem; }
+    .service-card .icon-wrap { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 18px; }
+    .service-card:nth-child(1) .icon-wrap { background: #E6F1FB; }
+    .service-card:nth-child(2) .icon-wrap { background: #EAF3DE; }
+    .service-card:nth-child(3) .icon-wrap { background: #FAEEDA; }
+    .service-card:nth-child(4) .icon-wrap { background: #FBEAF0; }
+    .service-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .service-card p { font-size: 13px; color: #666; line-height: 1.6; }
+
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .team-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; }
+    .team-photo { width: 100%; height: 260px; object-fit: cover; object-position: center top; display: block; }
+    .team-info { padding: 1.25rem; text-align: center; }
+    .team-card .name { font-size: 15px; font-weight: 600; }
+    .team-card .role { font-size: 12px; color: #666; margin-top: 5px; line-height: 1.4; }
+    .team-accent { display: block; width: 32px; height: 3px; border-radius: 2px; margin: 10px auto 0; }
+    .team-card:nth-child(1) .team-accent { background: #185FA5; }
+    .team-card:nth-child(2) .team-accent { background: #3B6D11; }
+    .team-card:nth-child(3) .team-accent { background: #993556; }
+
+    .cases-section { background: #042C53; }
+    .cases-section h2 { color: #fff; }
+    .cases-section .sub { color: #85B7EB; }
+    .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .case-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1.25rem; }
+    .case-tag { font-size: 11px; font-weight: 500; color: #85B7EB; background: rgba(255,255,255,0.1); padding: 3px 10px; border-radius: 999px; display: inline-block; margin-bottom: 10px; }
+    .case-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #fff; }
+    .case-card p { font-size: 13px; color: #85B7EB; line-height: 1.6; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .contact-grid label { font-size: 13px; color: #666; display: block; margin-bottom: 6px; }
+    .contact-grid input, .contact-grid textarea, .contact-grid select { width: 100%; margin-bottom: 16px; font-size: 14px; padding: 9px 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+    .contact-grid textarea { height: 90px; resize: vertical; }
+    .submit-btn { background: #185FA5; color: #fff; border: none; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; width: 100%; }
+    .contact-info h3 { font-size: 18px; font-weight: 600; margin-bottom: 1rem; }
+    .contact-info p { font-size: 14px; color: #666; line-height: 2; }
+    .contact-highlight { background: #E6F1FB; border-radius: 12px; padding: 1.25rem; margin-top: 1.5rem; }
+    .contact-highlight p { font-size: 13px; color: #185FA5; line-height: 1.6; }
+
+    footer { padding: 2rem 2.5rem; border-top: 1px solid #e5e5e5; display: flex; justify-content: space-between; align-items: center; background: #f7f7f5; }
+    footer .logo { font-size: 16px; font-weight: 600; }
+    footer .logo span { color: #185FA5; }
+    footer p { font-size: 13px; color: #666; }
+
+    @media (max-width: 600px) {
+      nav .links { display: none; }
+      .hero h1 { font-size: 32px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">My Services</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Book Time</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <section id="home" class="hero bg-primary text-white text-center py-5">
-        <div class="container">
-            <h1>Welcome to My Consulting & Management Services</h1>
-            <p>Expert advice in consulting and property management.</p>
-            <a href="#contact" class="btn btn-light btn-lg">Book a Consultation</a>
-        </div>
-    </section>
+<nav>
+  <div class="logo">Team<span>PRG</span></div>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#team">Team</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a meeting</button>
+</nav>
 
-    <section id="services" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Our Services</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Consulting</h5>
-                            <p class="card-text">Strategic consulting to help your business grow.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Management</h5>
-                            <p class="card-text">Efficient management solutions for your operations.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Property Services</h5>
-                            <p class="card-text">Comprehensive property management and investment advice.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="hero">
+  <div class="badge">Business consulting & real estate management</div>
+  <h1>TeamPRG: Strategic Consulting | <span>Seamless Management</span></h1>
+  <p>We partner with businesses and property owners to deliver expert consulting and real estate management services that drive measurable, lasting results.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a meeting</button>
+    <button class="btn-secondary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">View our portfolio</button>
+  </div>
+</div>
 
-    <section id="portfolio" class="bg-light py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Property Portfolio</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="images/property1.jpg" class="card-img-top" alt="Property 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Property 1</h5>
-                            <p class="card-text">Description of property 1.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more properties -->
-            </div>
-        </div>
-    </section>
+<section id="about">
+  <h2>About us</h2>
+  <p class="sub">Four pillars that define how we work</p>
+  <div class="pillars-grid">
+    <div class="pillar-card"><div class="p-num">1</div><h3>See the big picture</h3><p>We lead with strategy, analyzing how problems could impact your entire portfolio before recommending a path forward.</p></div>
+    <div class="pillar-card"><div class="p-num">2</div><h3>Execute with precision</h3><p>We turn complex management tasks into seamless operations, removing the friction from property ownership at every step.</p></div>
+    <div class="pillar-card"><div class="p-num">3</div><h3>Build lasting value</h3><p>Whether consulting on your business, managing an existing property, or planning future acquisitions — our ultimate metric for success is guided by your goals.</p></div>
+    <div class="pillar-card"><div class="p-num">4</div><h3>Operate as one team</h3><p>True collaboration is our foundation. We completely align with your goals to ensure successful outcomes, every time.</p></div>
+  </div>
+</section>
 
-    <section id="contact" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Book Time with Me</h2>
-            <p class="text-center">Schedule a consultation using the calendar below.</p>
-            <!-- Replace with your actual Calendly link -->
-            <div class="calendly-inline-widget" data-url="https://calendly.com/your-username" style="min-width:320px;height:630px;"></div>
-            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        </div>
-    </section>
+<div class="divider"></div>
 
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2023 My Services. All rights reserved.</p>
-    </footer>
+<section id="services" class="services-section">
+  <h2>Our services</h2>
+  <p class="sub">What we do best</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="icon-wrap">📊</div><h3>Business consulting</h3><p>Strategic planning, operational improvement, and growth advisory for businesses at every stage.</p></div>
+    <div class="service-card"><div class="icon-wrap">🏢</div><h3>Real estate management</h3><p>Full-service property management, leasing, and portfolio optimization for commercial and residential assets.</p></div>
+    <div class="service-card"><div class="icon-wrap">📈</div><h3>Investment strategy</h3><p>Data-driven insights to help you make confident decisions about where and how to grow your capital.</p></div>
+    <div class="service-card"><div class="icon-wrap">🤝</div><h3>Partnerships & deals</h3><p>Negotiation support, deal structuring, and relationship management for high-stakes transactions.</p></div>
+  </div>
+</section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+<div class="divider"></div>
+
+<section id="team">
+  <h2>Our team</h2>
+  <p class="sub">The people behind the work</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <img class="team-photo" src="linda.jpeg" alt="Linda Giusti" />
+      <div class="team-info">
+        <div class="name">Linda Giusti</div>
+        <div class="role">Investor Relationships</div>
+        <span class="team-accent"></span>
+      </div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="piero.jpeg" alt="Piero Ridoutt Giusti" />
+      <div class="team-info">
+        <div class="name">Piero Ridoutt Giusti</div>
+        <div class="role">Head of Consulting Services</div>
+        <span class="team-accent"></span>
+      </div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="ross.jpeg" alt="Ross Warner" />
+      <div class="team-info">
+        <div class="name">Ross Warner</div>
+        <div class="role">Head of Property Management</div>
+        <span class="team-accent"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="cases-section">
+  <h2>Portfolio</h2>
+  <p class="sub">Real results for real clients</p>
+  <div class="cases-grid">
+    <div class="case-card"><div class="case-tag">Business consulting</div><h3>Scaling a regional retail brand</h3><p>Helped a mid-size retailer expand to 3 new markets in 18 months through operational restructuring and strategic hiring.</p></div>
+    <div class="case-card"><div class="case-tag">Real estate</div><h3>Repositioning a commercial property</h3><p>Increased occupancy from 62% to 95% in under a year through targeted leasing strategy and tenant mix improvements.</p></div>
+    <div class="case-card"><div class="case-tag">Investment strategy</div><h3>Portfolio diversification plan</h3><p>Advised a family office on reallocating $40M across real estate and business assets for improved risk-adjusted returns.</p></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Get in touch</h2>
+  <p class="sub">Let's start a conversation</p>
+  <div class="contact-grid">
+    <div>
+      <label>Full name</label>
+      <input type="text" placeholder="Your name" />
+      <label>Email address</label>
+      <input type="email" placeholder="you@example.com" />
+      <label>How can we help?</label>
+      <select>
+        <option>Business consulting</option>
+        <option>Real estate management</option>
+        <option>Investment strategy</option>
+        <option>Other</option>
+      </select>
+      <label>Message</label>
+      <textarea placeholder="Tell us about your situation..."></textarea>
+      <button class="submit-btn">Send message</button>
+    </div>
+    <div class="contact-info">
+      <h3>Request a meeting</h3>
+      <p>📧 info@teamprg.us<br>📞 (574) 253-3033<br>📍 Cincinnati, OH</p>
+      <div class="contact-highlight">
+        <p>Prefer to talk directly? Reach out and we'll schedule a consultation at a time that works for you. We typically respond within one business day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Team<span>PRG</span></div>
+  <p>© 2026 Team PRG. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
